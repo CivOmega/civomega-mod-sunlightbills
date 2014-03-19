@@ -8,8 +8,8 @@ Must define three methods:
 from .patterns import PATTERNS
 
 import json
+import os
 from django.template import loader, Context
-from random import Random
 
 
 def search(topic):
