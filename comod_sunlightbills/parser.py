@@ -16,7 +16,7 @@ from django.template import loader, Context
 def search(topic):
     url = 'https://congress.api.sunlightfoundation.com/bills?apikey=%s&query=%s' % (os.environ['SUNLIGHT_API_KEY'], topic)
     resp = requests.get(url)
-    return json.loads(resp.json())
+    return resp.json()
 
 ############################################################
 # Pattern-dependent behavior
