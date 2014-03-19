@@ -39,7 +39,7 @@ def answer_pattern(pattern, args):
 # Applicable module-wide
 def render_answer_html(answer_data):
     template = loader.get_template('comod_sunlightbills/sunlightbills_search.html')
-    return template.render(**answer_data)
+    return template.render(Context(answer_data))
 
 def render_answer_json(answer_data):
     return json.dumps(answer_data)
