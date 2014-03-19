@@ -13,9 +13,9 @@ setup(name='civomega-mod-sunlightbills',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
       #zip_safe=False,
-      #install_requires=[
-      #    'civomega',
-      #],
+      install_requires=[
+          'requests',
+      ],
       entry_points="""
       # -*- Entry points: -*-
       """,

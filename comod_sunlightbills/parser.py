@@ -9,6 +9,7 @@ from .patterns import PATTERNS
 
 import json
 import os
+import requests
 from django.template import loader, Context
 
 
