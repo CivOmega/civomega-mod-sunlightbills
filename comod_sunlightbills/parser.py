@@ -108,12 +108,12 @@ def answer_pattern(pattern, args):
 def render_answer_html(answer_data):
     # This receives what we got in `answer_pattern` and returns HTML.
 
-    if answer_pattern.get('type', None) == "bill":
-      data = answer_pattern['data']
+    if answer_data.get('type', None) == "bill":
+      data = answer_data['data']
       template = loader.get_template('comod_sunlightbills/sunlightbills_bill_results.html')
       return template.render(Context(data))
-    elif answer_patternget('type', None) == "person":
-      data = answer_pattern['data']
+    elif answer_dataget('type', None) == "person":
+      data = answer_data['data']
       template = loader.get_template('comod_sunlightbills/sunlightbills_person_results.html')
       return template.render(Context(data))
     else:
