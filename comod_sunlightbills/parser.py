@@ -9,6 +9,7 @@ from .patterns import PATTERNS, BILL_PATTERNS, PERSON_PATTERNS
 
 import json
 import os
+import re
 import requests
 from django.template import loader, Context
 from django.conf import settings
