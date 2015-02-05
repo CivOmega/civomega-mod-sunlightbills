@@ -80,7 +80,7 @@ def answer_pattern(pattern, args):
     elif pattern in PERSON_PATTERNS:
       # We might be looking up via zip code or text search, so see what
       # pattern the user used
-      args_keys = PATTERN_ARGS_RE.findall(pattern_str)
+      args_keys = PATTERN_ARGS_RE.findall(pattern)
       kwargs = dict(zip(args_keys,args))
 
       if "zipcode" in kwargs:
