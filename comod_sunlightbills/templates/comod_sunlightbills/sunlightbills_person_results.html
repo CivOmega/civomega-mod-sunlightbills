@@ -1,28 +1,24 @@
   {% if results|length == 0 %}
-  <p>We couldn't find any bills.</p>
+  <p>We couldn't find any legislators.</p>
 {% else %}
   <p>{{ count }} results total. Here are the first {{ results|length }}:</p>
 
   <table class="tablesorter">
    <thead>
    <tr>
-   <th style="width: 120px;">Bill</th>
-   <th>Title</th>
-   <th style="width: 100px;">Introduced</th>
+   <th style="width: 120px;">Legislator</th>
+   <th>E-mail</th>
+   <th style="width: 100px;">State</th>
    </tr>
    </thead>
    <tbody>
    {% for item in results %}
    <tr>
-   <td><a href="{{item.urls.congress}}" target="_blank">{{ item.bill_id }}</a></td>
+   <td><a href="{{item.website}}" target="_blank">{{ item.first_name }} {{ item.middle_name }} {{ item.last_name }} {{ item.name_suffix }}</a>{% if item.nickname %} ({{ item.nickname }}){% endif %}</td>
    <td>
-   {% if item.short_title == None %}
-   {{ item.official_title }}
-   {% else %}
-   {{ item.short_title }}
-   {% endif %}
+   {{ item.oc_email }}
    </td>
-   <td>{{ item.introduced_on }}</td>
+   <td>{{ item.state_name }}</td>
    </tr>
    {% endfor %}
    </tbody>
