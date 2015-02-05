@@ -112,7 +112,7 @@ def render_answer_html(answer_data):
       data = answer_data['data']
       template = loader.get_template('comod_sunlightbills/sunlightbills_bill_results.html')
       return template.render(Context(data))
-    elif answer_dataget('type', None) == "person":
+    elif answer_data.get('type', None) == "person":
       data = answer_data['data']
       template = loader.get_template('comod_sunlightbills/sunlightbills_person_results.html')
       return template.render(Context(data))
