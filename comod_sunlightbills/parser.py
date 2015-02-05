@@ -17,7 +17,7 @@ from django.conf import settings
 PATTERN_ARGS_RE = re.compile(r'{([A-Za-z0-9_]+)}')
 
 
-def get_api_key()
+def get_api_key():
     key = None
     try:
         key = settings.SUNLIGHT_API_KEY
