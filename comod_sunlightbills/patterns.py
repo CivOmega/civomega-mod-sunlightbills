@@ -24,4 +24,4 @@ PERSON_PATTERNS = frozenset([
 #     "what are {person} and {person} talking about" but you can have
 #     "what are {person1} and {person2} talking about")
 
-PATTERNS = BILL_PATTERNS + PERSON_PATTERNS
+PATTERNS = BILL_PATTERNS | PERSON_PATTERNS
