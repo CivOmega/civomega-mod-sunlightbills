@@ -14,7 +14,7 @@
    <tbody>
    {% for item in results %}
    <tr>
-   <td><a href="{{item.website}}" target="_blank">{{ item.first_name }} {{ item.middle_name }} {{ item.last_name }} {{ item.name_suffix }}</a>{% if item.nickname %} ({{ item.nickname }}){% endif %}</td>
+   <td><a href="{{item.website}}" target="_blank">{{ item.first_name }}{% if item.middle_name %} {{ item.middle_name }}{% endif %} {{ item.last_name }}{% if name_suffix %} {{ item.name_suffix }}{% endif %}</a>{% if item.nickname %} ({{ item.nickname }}){% endif %}</td>
    <td>
    {{ item.oc_email }}
    </td>
