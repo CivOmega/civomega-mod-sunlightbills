@@ -7,8 +7,7 @@ but you must set `PATTERNS`)
 # patterns for returning info about bills in congress
 BILL_PATTERNS = frozenset([
     "what bills are about {topic}?",
-    "what laws are about {topic}?",
-    "what bills have {congress_person} sponsored?"
+    "what laws are about {topic}?"
 ])
 
 # patterns for returning info about congresspeople
