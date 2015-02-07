@@ -1,7 +1,14 @@
-  {% if results|length == 0 %}
+  {% if zipcode or party_str %}
+  <p>Searching for legislators
+  {% if zipcode %}in {{ zipcode }}
+  {% elif party_str %}that are {{ party_str }}{% endif %}&hellip;
+  </p>
+  {% endif %}
+
+  {% if data.results|length == 0 %}
   <p>We couldn't find any legislators.</p>
 {% else %}
-  <p>{{ count }} results total. Here are the first {{ results|length }}:</p>
+  <p>{{ data.count }} results total. Here are the first {{ data.results|length }}:</p>
 
   <table class="tablesorter">
    <thead>
@@ -12,7 +19,7 @@
    </tr>
    </thead>
    <tbody>
-   {% for item in results %}
+   {% for item in data.results %}
    <tr>
    <td><a href="{{item.website}}" target="_blank">{{ item.first_name }}{% if item.middle_name %} {{ item.middle_name }}{% endif %} {{ item.last_name }}{% if name_suffix %} {{ item.name_suffix }}{% endif %}</a>{% if item.nickname %} ({{ item.nickname }}){% endif %}</td>
    <td>

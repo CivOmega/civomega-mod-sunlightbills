@@ -14,7 +14,8 @@ import requests
 from django.template import loader, Context
 from django.conf import settings
 
-
+# a regular expression so we can find the variables in
+# the "blah blah pattern {variable}" patterns
 PATTERN_ARGS_RE = re.compile(r'{([A-Za-z0-9_]+)}')
 
 
@@ -88,6 +89,7 @@ def answer_pattern(pattern, args):
         zipcode = kwargs['zipcode']
         return {
           'type': 'person',
+          'zipcode': zipcode,
           'data': person_search_by_zip(zipcode)
         }
       elif "party" in kwargs:
@@ -95,6 +97,7 @@ def answer_pattern(pattern, args):
         party = kwargs['party']
         return {
           'type': 'person',
+          'party': party,
           'data': person_search_by_party(party)
         }
 
@@ -107,15 +110,26 @@ def answer_pattern(pattern, args):
 # Applicable module-wide
 def render_answer_html(answer_data):
     # This receives what we got in `answer_pattern` and returns HTML.
-
-    if answer_data.get('type', None) == "bill":
+    if answer_data and answer_data.get('type', None) == "bill":
       data = answer_data['data']
       template = loader.get_template('comod_sunlightbills/sunlightbills_bill_results.html')
       return template.render(Context(data))
-    elif answer_data.get('type', None) == "person":
-      data = answer_data['data']
+    elif answer_data and answer_data.get('type', None) == "person":
       template = loader.get_template('comod_sunlightbills/sunlightbills_person_results.html')
-      return template.render(Context(data))
+      party = answer_data.get('party', None)
+      if party:
+        party = party[0].upper()
+        if party == "D":
+          party = "in the Democratic Party"
+        elif party == "R":
+          party = "in the Republican Party"
+        else:
+          party = "independent"
+      return template.render(Context({
+        "data": answer_data['data'],
+        "party_str": party,
+        "zipcode": answer_data.get('zipcode', None),
+      }))
     else:
       # TODO: render a template for "we don't know how to handle this search
       raise Exception
